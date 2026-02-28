@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cybersecurity to Digital Forensics — Career Roadmap</title>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #f8f9fb;
+  --surface: #ffffff;
+  --surface2: #f1f3f7;
+  --border: #d4d9e3;
+  --text: #1e293b;
+  --text-dim: #64748b;
+  --accent-blue: #2563eb;
+  --accent-cyan: #0891b2;
+  --accent-green: #059669;
+  --accent-orange: #d97706;
+  --accent-red: #dc2626;
+  --accent-purple: #7c3aed;
+  --phase1: #2563eb;
+  --phase2: #d97706;
+  --phase3: #059669;
+  --decision-yes: #059669;
+  --decision-no: #dc2626;
+  --shadow: 0 1px 3px rgba(0,0,0,0.08), 0 1px 2px rgba(0,0,0,0.06);
+  --shadow-md: 0 4px 6px rgba(0,0,0,0.07), 0 2px 4px rgba(0,0,0,0.05);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  line-height: 1.6;
+  min-height: 100vh;
+}
+.hero {
+  text-align: center;
+  padding: 60px 20px 40px;
+  background: linear-gradient(180deg, #e0e7ff 0%, var(--bg) 100%);
+  border-bottom: 1px solid var(--border);
+}
+.hero h1 {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 2.2rem;
+  background: linear-gradient(135deg, var(--accent-cyan), var(--accent-blue), var(--accent-purple));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+  letter-spacing: -0.5px;
+}
+.hero .subtitle { color: var(--text-dim); font-size: 1.05rem; max-width: 700px; margin: 0 auto; }
+.hero .goal-badge {
+  display: inline-block; margin-top: 18px; padding: 8px 20px;
+  background: rgba(5, 150, 105, 0.1); border: 1px solid rgba(5, 150, 105, 0.3);
+  border-radius: 50px; color: var(--accent-green);
+  font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; font-weight: 700; letter-spacing: 1px;
+}
+.tab-nav { display: flex; justify-content: center; gap: 6px; padding: 24px 20px 0; flex-wrap: wrap; }
+.tab-btn {
+  padding: 10px 20px; border: 1px solid var(--border); background: var(--surface);
+  color: var(--text-dim); border-radius: 8px 8px 0 0; cursor: pointer;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; font-weight: 700;
+  transition: all 0.25s; letter-spacing: 0.5px; box-shadow: var(--shadow);
+}
+.tab-btn:hover { background: var(--surface2); color: var(--text); }
+.tab-btn.active { background: var(--accent-blue); color: #ffffff; border-color: var(--accent-blue); }
+.diagram-container { max-width: 1100px; margin: 0 auto; padding: 0 20px 60px; }
+.role-diagram { display: none; animation: fadeIn 0.4s ease; }
+.role-diagram.active { display: block; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(12px); } to { opacity: 1; transform: translateY(0); } }
+.role-header {
+  background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+  padding: 24px 30px; margin-bottom: 32px; box-shadow: var(--shadow);
+}
+.role-header h2 { font-family: 'JetBrains Mono', monospace; font-size: 1.3rem; color: var(--accent-blue); margin-bottom: 6px; }
+.role-header p { color: var(--text-dim); font-size: 0.95rem; }
+.phase { margin-bottom: 8px; position: relative; }
+.phase-label {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700;
+  letter-spacing: 1px; margin-bottom: 14px;
+}
+.phase-label.p1 { background: rgba(37,99,235,0.1); color: var(--phase1); border: 1px solid rgba(37,99,235,0.25); }
+.phase-label.p2 { background: rgba(217,119,6,0.1); color: var(--phase2); border: 1px solid rgba(217,119,6,0.25); }
+.phase-label.p3 { background: rgba(5,150,105,0.1); color: var(--phase3); border: 1px solid rgba(5,150,105,0.25); }
+.flow { display: flex; flex-direction: column; align-items: center; gap: 0; }
+.flow-row { display: flex; align-items: center; justify-content: center; gap: 0; flex-wrap: wrap; }
+.arrow-down { width: 2px; height: 28px; background: var(--border); position: relative; margin: 0 auto; }
+.arrow-down::after {
+  content: ''; position: absolute; bottom: -4px; left: 50%; transform: translateX(-50%);
+  border-left: 5px solid transparent; border-right: 5px solid transparent; border-top: 6px solid var(--border);
+}
+.arrow-right { width: 36px; height: 2px; background: var(--border); position: relative; flex-shrink: 0; }
+.arrow-right::after {
+  content: ''; position: absolute; right: -4px; top: 50%; transform: translateY(-50%);
+  border-top: 5px solid transparent; border-bottom: 5px solid transparent; border-left: 6px solid var(--border);
+}
+.arrow-right.green { background: var(--decision-yes); }
+.arrow-right.green::after { border-left-color: var(--decision-yes); }
+.arrow-down.green { background: var(--decision-yes); }
+.arrow-down.green::after { border-top-color: var(--decision-yes); }
+.node {
+  padding: 12px 20px; border-radius: 10px; text-align: center; font-size: 0.85rem;
+  font-weight: 500; min-width: 160px; max-width: 220px; line-height: 1.4;
+}
+.node.start {
+  background: var(--surface); border: 2px solid var(--accent-blue); color: var(--accent-blue);
+  border-radius: 50px; min-width: auto; padding: 8px 24px;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; font-weight: 700; box-shadow: var(--shadow);
+}
+.node.activity { background: var(--surface); border: 1.5px solid var(--border); color: var(--text); box-shadow: var(--shadow); }
+.node.activity.p1-border { border-color: rgba(37,99,235,0.4); }
+.node.activity.p2-border { border-color: rgba(217,119,6,0.4); }
+.node.activity.p3-border { border-color: rgba(5,150,105,0.4); }
+.node.decision {
+  background: #fffbeb; border: 2px solid var(--accent-orange); color: var(--accent-orange);
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+  width: 130px; height: 130px; display: flex; align-items: center; justify-content: center;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.72rem; font-weight: 700;
+  min-width: 130px; max-width: 130px; padding: 30px 20px; line-height: 1.3;
+}
+.node.delivered {
+  background: linear-gradient(135deg, rgba(5,150,105,0.08), rgba(8,145,178,0.08));
+  border: 2px solid var(--accent-green); color: var(--accent-green); border-radius: 12px;
+  font-family: 'JetBrains Mono', monospace; font-weight: 700; font-size: 0.8rem; box-shadow: var(--shadow-md);
+}
+.node .cert-tag {
+  display: inline-block; margin-top: 6px; padding: 2px 8px;
+  background: rgba(8,145,178,0.1); border-radius: 4px;
+  font-family: 'JetBrains Mono', monospace; font-size: 0.68rem; color: var(--accent-cyan); font-weight: 700;
+}
+.node .small-text { font-size: 0.72rem; color: var(--text-dim); margin-top: 4px; }
+.branch-label { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; font-weight: 700; padding: 2px 8px; border-radius: 4px; }
+.branch-label.yes { color: var(--decision-yes); background: rgba(5,150,105,0.1); }
+.branch-label.no { color: var(--decision-no); background: rgba(220,38,38,0.08); }
+.parallel-path {
+  background: rgba(124,58,237,0.04); border: 1px dashed rgba(124,58,237,0.3);
+  border-radius: 12px; padding: 18px; margin: 14px 0; max-width: 700px; width: 100%;
+}
+.parallel-path h4 { font-family: 'JetBrains Mono', monospace; font-size: 0.75rem; color: var(--accent-purple); margin-bottom: 10px; letter-spacing: 0.5px; }
+.parallel-items { display: flex; flex-wrap: wrap; gap: 8px; }
+.parallel-item {
+  padding: 8px 14px; background: var(--surface); border: 1px solid rgba(124,58,237,0.2);
+  border-radius: 8px; font-size: 0.8rem; color: var(--text); flex: 1; min-width: 200px; box-shadow: var(--shadow);
+}
+.parallel-item .icon { margin-right: 6px; }
+.phase-divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); margin: 28px 0; }
+.legend {
+  display: flex; flex-wrap: wrap; gap: 20px; padding: 20px 24px;
+  background: var(--surface); border: 1px solid var(--border); border-radius: 10px;
+  margin-bottom: 28px; box-shadow: var(--shadow);
+}
+.legend-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; color: var(--text-dim); }
+.legend-shape { width: 28px; height: 20px; border-radius: 4px; flex-shrink: 0; }
+.legend-shape.activity-l { background: var(--surface); border: 1.5px solid var(--border); }
+.legend-shape.decision-l { background: #fffbeb; border: 2px solid var(--accent-orange); clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); width: 24px; height: 24px; }
+.legend-shape.delivered-l { background: rgba(5,150,105,0.08); border: 2px solid var(--accent-green); border-radius: 6px; }
+.legend-shape.parallel-l { background: rgba(124,58,237,0.06); border: 1.5px dashed var(--accent-purple); }
+.legend-shape.start-l { background: var(--surface); border: 2px solid var(--accent-blue); border-radius: 50px; }
+.footer { text-align: center; padding: 30px 20px; color: var(--text-dim); font-size: 0.8rem; border-top: 1px solid var(--border); margin-top: 40px; }
+@media (max-width: 768px) {
+  .hero h1 { font-size: 1.5rem; }
+  .flow-row { flex-direction: column; gap: 0; }
+  .arrow-right { width: 2px; height: 28px; }
+  .arrow-right::after {
+    right: auto; top: auto; bottom: -4px; left: 50%; transform: translateX(-50%);
+    border-left: 5px solid transparent; border-right: 5px solid transparent;
+    border-top: 6px solid var(--border); border-bottom: none;
+  }
+  .arrow-right.green::after { border-top-color: var(--decision-yes); border-left-color: transparent; }
+  .node.decision { width: 110px; height: 110px; min-width: 110px; }
+}
+@media print {
+  body { background: white; }
+  .tab-nav { display: none; }
+  .role-diagram { display: block !important; page-break-after: always; }
+}
+</style>
+</head>
+<body>
+<div class="hero">
+  <h1>CYBER → FORENSICS ROADMAP</h1>
+  <p class="subtitle">Career workflow diagrams: From entry-level cybersecurity roles to Junior Digital Forensics Analyst in 18 months</p>
+  <div class="goal-badge">🎯 TARGET: JUNIOR DIGITAL FORENSICS ANALYST</div>
+</div>
+<div class="diagram-container">
+  <div style="padding-top: 28px;">
+    <div class="legend">
+      <div class="legend-item"><div class="legend-shape start-l"></div> Initial State</div>
+      <div class="legend-item"><div class="legend-shape activity-l"></div> Activity</div>
+      <div class="legend-item"><div class="legend-shape decision-l"></div> Decision</div>
+      <div class="legend-item"><div class="legend-shape parallel-l"></div> Parallel Path (Claude/AI)</div>
+      <div class="legend-item"><div class="legend-shape delivered-l"></div> Delivered / Goal</div>
+    </div>
+  </div>
+  <div class="tab-nav">
+    <button class="tab-btn active" onclick="showRole('soc')">SOC ANALYST</button>
+    <button class="tab-btn" onclick="showRole('cybera')">CYBER ANALYST I</button>
+    <button class="tab-btn" onclick="showRole('ir')">INCIDENT RESPONSE</button>
+    <button class="tab-btn" onclick="showRole('itsec')">IT SECURITY TECH</button>
+  </div>
+
+  <!-- ROLE 1: SOC ANALYST -->
+  <div id="role-soc" class="role-diagram active">
+    <div class="role-header">
+      <h2>SOC Analyst / SOC Analyst (Tier 1)</h2>
+      <p>Security Operations Center — monitor alerts, triage incidents, escalate threats. Strongest springboard into forensics due to direct exposure to incident evidence and SIEM log analysis.</p>
+    </div>
+    <div class="phase">
+      <div class="phase-label p1">⚡ PHASE 1: FOUNDATION — MONTHS 1–3</div>
+      <div class="flow">
+        <div class="node start">▶ START</div>
+        <div class="arrow-down"></div>
+        <div class="node activity p1-border">Begin GCFE Self-Study<br>with Claude / ChatGPT<div class="cert-tag">GCFE</div><div class="small-text">Use AI to master forensic concepts daily</div></div>
+        <div class="arrow-down"></div>
+        <div class="flow-row">
+          <div class="node activity p1-border">Obtain CompTIA Security+<div class="cert-tag">Security+</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p1-border">Earn Splunk Core<br>Certified User<div class="cert-tag">SPLUNK</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p1-border">Apply for<br>SOC Analyst roles<div class="small-text">Apply broadly, 20+ apps/week</div></div>
+        </div>
+        <div class="arrow-down"></div>
+        <div class="node decision">HIRED?</div>
+        <div class="flow-row" style="gap: 16px; margin-top: 12px;">
+          <div style="display:flex; flex-direction:column; align-items:center;">
+            <div class="branch-label no">✗ NOT YET</div>
+            <div class="arrow-down" style="height:16px; background:var(--decision-no);"></div>
+            <div class="parallel-path">
+              <h4>🤖 PARALLEL PATH — BUILD WITH AI WHILE JOB SEARCHING</h4>
+              <div class="parallel-items">
+                <div class="parallel-item"><span class="icon">📁</span> Build SOC home lab (Splunk, Wireshark, Elastic) — use Claude for setup guides</div>
+                <div class="parallel-item"><span class="icon">📝</span> Practice GCFE exam domains with Claude-generated quizzes &amp; scenario walkthroughs</div>
+                <div class="parallel-item"><span class="icon">💼</span> Create forensic write-ups portfolio: disk imaging, memory analysis, timeline reconstruction</div>
+                <div class="parallel-item"><span class="icon">🎤</span> Mock interviews with Claude — SOC-specific behavioral &amp; technical questions</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center;">
+            <div class="branch-label yes">✓ YES</div>
+            <div class="arrow-down green" style="height:16px;"></div>
+            <div class="node delivered" style="padding:14px 24px;">HIRED AS SOC ANALYST →<br>PROCEED TO PHASE 2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phase-divider"></div>
+    <div class="phase">
+      <div class="phase-label p2">🔥 PHASE 2: ADVANCEMENT — MONTHS 4–8</div>
+      <div class="flow">
+        <div class="node start">WORKING AS SOC ANALYST</div>
+        <div class="arrow-down"></div>
+        <div class="flow-row">
+          <div class="node activity p2-border">On-the-job: Master SIEM,<br>alert triage, log analysis<div class="small-text">Document forensic-relevant cases</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p2-border">Continue GCFE study<br>(evenings &amp; weekends)<div class="cert-tag">GCFE</div><div class="small-text">Use Claude for practice exams</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p2-border">Volunteer for IR cases<br>&amp; evidence handling<div class="small-text">Build real forensics experience</div></div>
+        </div>
+        <div class="arrow-down"></div>
+        <div class="flow-row">
+          <div class="node activity p2-border">Earn GCFE Certification<div class="cert-tag">GCFE ✓</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p2-border">Begin CHFI or EnCE study<div class="cert-tag">CHFI / EnCE</div><div class="small-text">AI-assisted forensic tool labs</div></div>
+        </div>
+        <div class="arrow-down"></div>
+        <div class="node decision">READY TO PIVOT?</div>
+        <div style="margin-top:12px;"><div class="branch-label yes">✓ SKILLS + CERTS ACQUIRED</div></div>
+      </div>
+    </div>
+    <div class="phase-divider"></div>
+    <div class="phase">
+      <div class="phase-label p3">🎯 PHASE 3: FORENSICS PIVOT — MONTHS 9–18</div>
+      <div class="flow">
+        <div class="node start">TRANSITION MODE</div>
+        <div class="arrow-down"></div>
+        <div class="flow-row">
+          <div class="node activity p3-border">Apply for Junior<br>Digital Forensics roles<div class="small-text">Leverage SOC + GCFE + portfolio</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p3-border">Network with DFIR<br>professionals (LinkedIn, HTCIA)</div>
+          <div class="arrow-right"></div>
+          <div class="node activity p3-border">Complete forensic<br>CTF challenges<div class="small-text">CyberDefenders, DFIR Madness</div></div>
+        </div>
+        <div class="arrow-down"></div>
+        <div class="flow-row">
+          <div class="node activity p3-border">Optional: Earn EnCE or CHFI<div class="cert-tag">EnCE / CHFI</div></div>
+          <div class="arrow-right green"></div>
+          <div class="node delivered" style="padding:18px 28px; font-size:0.9rem;">🏆 JUNIOR DIGITAL<br>FORENSICS ANALYST</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROLE 2: CYBERSECURITY ANALYST I -->
+  <div id="role-cybera" class="role-diagram">
+    <div class="role-header">
+      <h2>Cybersecurity Analyst I</h2>
+      <p>Broad security operations — vulnerability management, policy compliance, threat assessment. Provides wide security fundamentals that translate well to forensic methodology and investigative thinking.</p>
+    </div>
+    <div class="phase">
+      <div class="phase-label p1">⚡ PHASE 1: FOUNDATION — MONTHS 1–3</div>
+      <div class="flow">
+        <div class="node start">▶ START</div>
+        <div class="arrow-down"></div>
+        <div class="node activity p1-border">Begin GCFE Self-Study<br>with Claude / ChatGPT<div class="cert-tag">GCFE</div><div class="small-text">Daily AI-driven forensic concept mastery</div></div>
+        <div class="arrow-down"></div>
+        <div class="flow-row">
+          <div class="node activity p1-border">Obtain CompTIA Security+<div class="cert-tag">Security+</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p1-border">Earn CompTIA CySA+<div class="cert-tag">CySA+</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p1-border">Apply for Cybersecurity<br>Analyst I roles<div class="small-text">Apply broadly, 20+ apps/week</div></div>
+        </div>
+        <div class="arrow-down"></div>
+        <div class="node decision">HIRED?</div>
+        <div class="flow-row" style="gap: 16px; margin-top: 12px;">
+          <div style="display:flex; flex-direction:column; align-items:center;">
+            <div class="branch-label no">✗ NOT YET</div>
+            <div class="arrow-down" style="height:16px; background:var(--decision-no);"></div>
+            <div class="parallel-path">
+              <h4>🤖 PARALLEL PATH — BUILD WITH AI WHILE JOB SEARCHING</h4>
+              <div class="parallel-items">
+                <div class="parallel-item"><span class="icon">🔬</span> Build vulnerability analysis lab — use Claude to create scan-and-report workflows</div>
+                <div class="parallel-item"><span class="icon">📝</span> GCFE domain deep-dives with Claude — Windows forensics, browser artifacts, registry analysis</div>
+                <div class="parallel-item"><span class="icon">💼</span> Create portfolio: vulnerability assessments, incident reports, forensic artifact analysis</div>
+                <div class="parallel-item"><span class="icon">🎤</span> Mock interviews with Claude — security frameworks, NIST, forensic chain of custody</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center;">
+            <div class="branch-label yes">✓ YES</div>
+            <div class="arrow-down green" style="height:16px;"></div>
+            <div class="node delivered" style="padding:14px 24px;">HIRED AS CYBER ANALYST I →<br>PROCEED TO PHASE 2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phase-divider"></div>
+    <div class="phase">
+      <div class="phase-label p2">🔥 PHASE 2: ADVANCEMENT — MONTHS 4–8</div>
+      <div class="flow">
+        <div class="node start">WORKING AS CYBER ANALYST I</div>
+        <div class="arrow-down"></div>
+        <div class="flow-row">
+          <div class="node activity p2-border">On-the-job: Vuln mgmt,<br>compliance, threat intel<div class="small-text">Request forensic-adjacent tasks</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p2-border">Pass GCFE Exam<div class="cert-tag">GCFE ✓</div><div class="small-text">Claude-powered study plan</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p2-border">Begin CHFI Prep<div class="cert-tag">CHFI</div><div class="small-text">Hands-on forensic tool practice</div></div>
+        </div>
+        <div class="arrow-down"></div>
+        <div class="node activity p2-border" style="max-width:360px;">Build forensic case studies from work incidents<div class="small-text">Document root-cause analyses with forensic rigor</div></div>
+        <div class="arrow-down"></div>
+        <div class="node decision">READY TO PIVOT?</div>
+        <div style="margin-top:12px;"><div class="branch-label yes">✓ SKILLS + CERTS ACQUIRED</div></div>
+      </div>
+    </div>
+    <div class="phase-divider"></div>
+    <div class="phase">
+      <div class="phase-label p3">🎯 PHASE 3: FORENSICS PIVOT — MONTHS 9–18</div>
+      <div class="flow">
+        <div class="node start">TRANSITION MODE</div>
+        <div class="arrow-down"></div>
+        <div class="flow-row">
+          <div class="node activity p3-border">Apply for Junior<br>Digital Forensics roles<div class="small-text">Leverage analyst exp + GCFE + CHFI</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p3-border">Complete DFIR CTFs<br>&amp; case competitions</div>
+          <div class="arrow-right"></div>
+          <div class="node activity p3-border">Optional: Earn EnCE<div class="cert-tag">EnCE</div></div>
+        </div>
+        <div class="arrow-down"></div>
+        <div class="node delivered" style="padding:18px 28px; font-size:0.9rem;">🏆 JUNIOR DIGITAL<br>FORENSICS ANALYST</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROLE 3: INCIDENT RESPONSE ANALYST -->
+  <div id="role-ir" class="role-diagram">
+    <div class="role-header">
+      <h2>Incident Response Analyst (Junior)</h2>
+      <p>Front-line incident handling — containment, eradication, recovery. The most direct pipeline to forensics — you're already handling evidence, analyzing malware artifacts, and documenting incident timelines.</p>
+    </div>
+    <div class="phase">
+      <div class="phase-label p1">⚡ PHASE 1: FOUNDATION — MONTHS 1–3</div>
+      <div class="flow">
+        <div class="node start">▶ START</div>
+        <div class="arrow-down"></div>
+        <div class="node activity p1-border">Begin GCFE Self-Study<br>with Claude / ChatGPT<div class="cert-tag">GCFE</div><div class="small-text">IR + Forensics overlap = fast track</div></div>
+        <div class="arrow-down"></div>
+        <div class="flow-row">
+          <div class="node activity p1-border">Obtain CompTIA Security+<div class="cert-tag">Security+</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p1-border">Study for GCIH<br>(Incident Handler)<div class="cert-tag">GCIH</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p1-border">Apply for Junior<br>IR Analyst roles<div class="small-text">Apply broadly, 20+ apps/week</div></div>
+        </div>
+        <div class="arrow-down"></div>
+        <div class="node decision">HIRED?</div>
+        <div class="flow-row" style="gap: 16px; margin-top: 12px;">
+          <div style="display:flex; flex-direction:column; align-items:center;">
+            <div class="branch-label no">✗ NOT YET</div>
+            <div class="arrow-down" style="height:16px; background:var(--decision-no);"></div>
+            <div class="parallel-path">
+              <h4>🤖 PARALLEL PATH — BUILD WITH AI WHILE JOB SEARCHING</h4>
+              <div class="parallel-items">
+                <div class="parallel-item"><span class="icon">🧪</span> Build IR playbook lab — use Claude to simulate incidents &amp; write response procedures</div>
+                <div class="parallel-item"><span class="icon">📝</span> GCFE + GCIH dual-study with Claude — overlap incident handling &amp; forensic evidence</div>
+                <div class="parallel-item"><span class="icon">💼</span> Portfolio: IR runbooks, malware triage reports, forensic timeline analyses</div>
+                <div class="parallel-item"><span class="icon">🎤</span> Mock interviews: incident scenarios, MITRE ATT&amp;CK framework, evidence handling</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center;">
+            <div class="branch-label yes">✓ YES</div>
+            <div class="arrow-down green" style="height:16px;"></div>
+            <div class="node delivered" style="padding:14px 24px;">HIRED AS JR IR ANALYST →<br>PROCEED TO PHASE 2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phase-divider"></div>
+    <div class="phase">
+      <div class="phase-label p2">🔥 PHASE 2: ADVANCEMENT — MONTHS 4–8</div>
+      <div class="flow">
+        <div class="node start">WORKING AS JR IR ANALYST</div>
+        <div class="arrow-down"></div>
+        <div class="flow-row">
+          <div class="node activity p2-border">On-the-job: Incident<br>containment &amp; evidence<div class="small-text">Every IR case = forensic practice</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p2-border">Pass GCFE Exam<div class="cert-tag">GCFE ✓</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p2-border">Begin GCFA Study<br>(Forensic Analyst)<div class="cert-tag">GCFA</div><div class="small-text">Advanced forensics cert</div></div>
+        </div>
+        <div class="arrow-down"></div>
+        <div class="node activity p2-border" style="max-width: 360px;">Document all IR cases with forensic methodology<div class="small-text">Chain of custody, disk imaging, memory forensics</div></div>
+        <div class="arrow-down"></div>
+        <div class="node decision">READY TO PIVOT?</div>
+        <div style="margin-top:12px;"><div class="branch-label yes">✓ STRONGEST FORENSIC CANDIDATE</div></div>
+      </div>
+    </div>
+    <div class="phase-divider"></div>
+    <div class="phase">
+      <div class="phase-label p3">🎯 PHASE 3: FORENSICS PIVOT — MONTHS 9–18</div>
+      <div class="flow">
+        <div class="node start">TRANSITION MODE</div>
+        <div class="arrow-down"></div>
+        <div class="flow-row">
+          <div class="node activity p3-border">Apply for Junior<br>Digital Forensics roles<div class="small-text">IR exp is gold for forensics hiring</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p3-border">Pass GCFA Exam<div class="cert-tag">GCFA ✓</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p3-border">Contribute to DFIR<br>community &amp; write-ups</div>
+        </div>
+        <div class="arrow-down"></div>
+        <div class="node delivered" style="padding:18px 28px; font-size:0.9rem;">🏆 JUNIOR DIGITAL<br>FORENSICS ANALYST</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ROLE 4: IT SECURITY TECHNICIAN -->
+  <div id="role-itsec" class="role-diagram">
+    <div class="role-header">
+      <h2>IT Security Technician</h2>
+      <p>Hands-on security infrastructure — firewalls, endpoint protection, patching, access control. Provides deep technical fundamentals in systems that forensic analysts investigate daily.</p>
+    </div>
+    <div class="phase">
+      <div class="phase-label p1">⚡ PHASE 1: FOUNDATION — MONTHS 1–3</div>
+      <div class="flow">
+        <div class="node start">▶ START</div>
+        <div class="arrow-down"></div>
+        <div class="node activity p1-border">Begin GCFE Self-Study<br>with Claude / ChatGPT<div class="cert-tag">GCFE</div><div class="small-text">Build forensic mindset from day 1</div></div>
+        <div class="arrow-down"></div>
+        <div class="flow-row">
+          <div class="node activity p1-border">Obtain CompTIA Security+<div class="cert-tag">Security+</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p1-border">Earn CompTIA Network+<div class="cert-tag">Network+</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p1-border">Apply for IT Security<br>Technician roles<div class="small-text">Apply broadly, 20+ apps/week</div></div>
+        </div>
+        <div class="arrow-down"></div>
+        <div class="node decision">HIRED?</div>
+        <div class="flow-row" style="gap: 16px; margin-top: 12px;">
+          <div style="display:flex; flex-direction:column; align-items:center;">
+            <div class="branch-label no">✗ NOT YET</div>
+            <div class="arrow-down" style="height:16px; background:var(--decision-no);"></div>
+            <div class="parallel-path">
+              <h4>🤖 PARALLEL PATH — BUILD WITH AI WHILE JOB SEARCHING</h4>
+              <div class="parallel-items">
+                <div class="parallel-item"><span class="icon">🖥️</span> Build security infra lab — firewall configs, endpoint hardening — Claude as config advisor</div>
+                <div class="parallel-item"><span class="icon">📝</span> GCFE deep practice with Claude — Windows registry, file system forensics, artifact recovery</div>
+                <div class="parallel-item"><span class="icon">💼</span> Portfolio: network diagrams, security configs, forensic disk images &amp; analysis reports</div>
+                <div class="parallel-item"><span class="icon">🎤</span> Mock interviews: endpoint security, GPO, patch management, basic forensic procedures</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:flex; flex-direction:column; align-items:center;">
+            <div class="branch-label yes">✓ YES</div>
+            <div class="arrow-down green" style="height:16px;"></div>
+            <div class="node delivered" style="padding:14px 24px;">HIRED AS IT SEC TECH →<br>PROCEED TO PHASE 2</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phase-divider"></div>
+    <div class="phase">
+      <div class="phase-label p2">🔥 PHASE 2: ADVANCEMENT — MONTHS 4–8</div>
+      <div class="flow">
+        <div class="node start">WORKING AS IT SEC TECH</div>
+        <div class="arrow-down"></div>
+        <div class="flow-row">
+          <div class="node activity p2-border">On-the-job: Endpoint<br>security, system hardening<div class="small-text">Learn systems forensics investigators target</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p2-border">Pass GCFE Exam<div class="cert-tag">GCFE ✓</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p2-border">Begin CHFI Study<div class="cert-tag">CHFI</div><div class="small-text">Forensic tools &amp; procedures</div></div>
+        </div>
+        <div class="arrow-down"></div>
+        <div class="node activity p2-border" style="max-width: 360px;">Request involvement in security incident investigations<div class="small-text">Bridge IT operations → forensic analysis</div></div>
+        <div class="arrow-down"></div>
+        <div class="node decision">READY TO PIVOT?</div>
+        <div style="margin-top:12px;"><div class="branch-label yes">✓ SYSTEMS KNOWLEDGE + FORENSIC CERTS</div></div>
+      </div>
+    </div>
+    <div class="phase-divider"></div>
+    <div class="phase">
+      <div class="phase-label p3">🎯 PHASE 3: FORENSICS PIVOT — MONTHS 9–18</div>
+      <div class="flow">
+        <div class="node start">TRANSITION MODE</div>
+        <div class="arrow-down"></div>
+        <div class="flow-row">
+          <div class="node activity p3-border">Apply for Junior<br>Digital Forensics roles<div class="small-text">Systems expertise + GCFE + CHFI</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p3-border">Pass CHFI Exam<div class="cert-tag">CHFI ✓</div></div>
+          <div class="arrow-right"></div>
+          <div class="node activity p3-border">Optional: Pursue EnCE<br>or GCFA<div class="cert-tag">EnCE / GCFA</div></div>
+        </div>
+        <div class="arrow-down"></div>
+        <div class="node delivered" style="padding:18px 28px; font-size:0.9rem;">🏆 JUNIOR DIGITAL<br>FORENSICS ANALYST</div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="footer">Career Roadmap — Cybersecurity to Digital Forensics | Built with purpose 🎯</div>
+<script>
+function showRole(roleId) {
+  document.querySelectorAll('.role-diagram').forEach(d => d.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+  document.getElementById('role-' + roleId).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
